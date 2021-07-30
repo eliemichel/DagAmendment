@@ -22,7 +22,7 @@ This repository is the official Blender implementation of the paper "[*DAG Amend
 Usage
 -----
 
-**A.** Download [the latest release](releases/latest) zip file and install it like any other Blender add-on (in `Edit > Preferences > Add-ons > Install`)
+**A.** Download [the latest release](https://github.com/eliemichel/DagAmendment/releases/latest) zip file and install it like any other Blender add-on (in `Edit > Preferences > Add-ons > Install`)
 
 **B.** You should see two new panels in scene properties. The "*Parametric Shape - Rig*" panel (1) is where one defines the list of public hyper-parameters of the scene and the "*Parametric Shape - Anim*" panel (2) that exposes all hyper-parameters once they are defined.
 
