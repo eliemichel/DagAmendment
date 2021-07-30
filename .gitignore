@@ -1,0 +1,5 @@
+releases/
+*.blend1
+__pycache__/
+.ipynb_checkpoints/
+DagAmendment/*.pyd
