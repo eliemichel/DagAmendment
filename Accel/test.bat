@@ -1,0 +1,1 @@
+"C:\Program Files\Blender Foundation\Blender 2.91\blender.exe" -b C:\Elie\src\DiffParamBlender\tests\test_accel.blend -P C:\Elie\src\DiffParamBlender\Accel\blender_test.py
