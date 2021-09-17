@@ -241,7 +241,10 @@ class DagAmendment(Operator):
         #bpy.ops.object.mode_set(mode='EDIT')
         #bpy.ops.uv.lightmap_pack('EXEC_DEFAULT', PREF_CONTEXT='ALL_FACES')
         #bpy.ops.object.mode_set(mode='OBJECT')
-        bpy.ops.uv.lightmap_pack()
+        try:
+            bpy.ops.uv.lightmap_pack()
+        except RuntimeError as e:
+            print(f"Warning: {e}")
         bpy.ops.object.delete()
 
 # -------------------------------------------------------------------
