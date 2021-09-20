@@ -34,12 +34,12 @@ from numpy.linalg import norm
 
 from .AbstractJFilter import AbstractJFilter
 
-class NegativeJFilter(AbstractJFilter):
+class NextJFilter(AbstractJFilter):
     """
-    Sample jacobian out of the brush to compare with its value inside the brush.
+    Experiments toward the next jfilter
     """
-    diffparam_label = "Negative Interaction"
-    diffparam_default = False
+    diffparam_label = "Next JFilter"
+    diffparam_default = True
 
     extra_radius: IntProperty(
         name = "Extra Radius",
@@ -106,9 +106,24 @@ class NegativeJFilter(AbstractJFilter):
 
         dropout = np.logical_or(contrast_dropout, variation_dropout)
 
+        # 3. Recompute average on significant points only (sort of median)
+        significant_mask = inside_norm > np.maximum(inside_norm_mean - 2 * np.maximum(inside_norm_std, 1e-5), 1e-8)
+        all_inside_jacobians = sample_points.jacobians[inside_brush_mask]
+        (_, dim, n) = all_inside_jacobians.shape
+        corrected_inside_jacobian = np.empty((dim, n), 'f')
+
+        for k in range(n):
+            mask_k = significant_mask[:,k]
+            if mask_k.any():
+                corrected_inside_jacobian[:,k] = np.nanmean(all_inside_jacobians[:,:,k][mask_k], axis=0)
+            else:
+                corrected_inside_jacobian[:,k] = 0
+
+        #corrected_inside_jacobian = np.nanmean(sample_points.jacobians[inside_brush_mask][significant_mask], axis=0)
+
         # Dropped out hyper-parameters are excluded from solving by setting
         # their column to 0 in the output jacobian.
-        jacobian = inside_jacobian
+        jacobian = corrected_inside_jacobian
         jacobian[:,dropout] = 0.0
 
         return jacobian

@@ -164,7 +164,7 @@ class SmartGrabTool(WorkSpaceTool):
                     (x + offset, y - 15 + offset), (x + offset, y - radius + offset),
                 ], color)
 
-            if (smartgrab_props.jfilter in {'NegativeJFilter'}
+            if (smartgrab_props.jfilter in {'NegativeJFilter', 'NextJFilter'}
                 and preview_props.show_outer_radius):
                 jfilter_props = diffparam.jfilter_properties(smartgrab_props.jfilter)
                 r = radius + jfilter_props.extra_radius

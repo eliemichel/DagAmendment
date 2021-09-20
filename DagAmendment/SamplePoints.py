@@ -101,6 +101,9 @@ class SamplePoints:
             self._eval_positions(new_positions, parametric_shape)
             self.jacobians[:,:,k] = (new_positions - self.positions) / delta
 
+            if norm(self.jacobians[:,:,k]) == 0:
+                print(f"WARNING null axis {k} (delta={delta})")
+
             # Restore the original value of the parameter
             hparam.update(set=value)
 

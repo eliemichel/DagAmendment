@@ -160,11 +160,13 @@ class HyperParameterProperty(PropertyGroup):
     def update(self, set=None, add=None):
         """Set or increment by <add> the value of the parameter if it is valid"""
         if self.obj is None or not hasattr(self.obj, self.prop):
+            print(f"ERROR: object {self.obj} has no property {self.prop}")
             return
         
         attr = getattr(self.obj, self.prop)
 
         if self.index < 0 or self.index >= len(attr):
+            print(f"ERROR: index out of bounds: {self.index} (should be in range (0, {len(attr) - 1})")
             return
 
         if set is not None:
@@ -177,7 +179,12 @@ class HyperParameterProperty(PropertyGroup):
     def delta(self, fac=1e-5):
         """Define what a "small" increment means for this parameter"""
         delta = (self.maximum - self.minimum) * fac
-        if self.eval() + delta > self.maximum:
+
+        # Go away from boundary to ensure that we can measure finite difference without the risk of being clamped
+        value = self.eval()
+        to_min = value - self.minimum
+        to_max = self.maximum - value
+        if to_max < to_min:
             return -delta
         else:
             return delta
