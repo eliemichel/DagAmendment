@@ -26,7 +26,7 @@ from bpy.types import Gizmo, GizmoGroup
 
 from gpu_extras.batch import batch_for_shader
 from gpu_extras.presets import draw_circle_2d
-from .shaders import line_shader,, point_shader
+from .shaders import line_shader, point_shader
 
 from mathutils import Vector
 from math import cos, sin, pi

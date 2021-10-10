@@ -26,8 +26,6 @@ from mathutils import Matrix
 from gpu_extras.presets import draw_circle_2d
 from bgl import *
 
-from .shaders import tex2points_shader
-
 # -------------------------------------------------------------------
 
 def has_attr(shader, attr):
