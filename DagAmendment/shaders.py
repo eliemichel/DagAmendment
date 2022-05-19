@@ -39,10 +39,11 @@ point_shader = make_shader('''
 
 '''
     uniform vec4 color;
+    out vec4 fragColor;
 
     void main()
     {
-        gl_FragColor = color;
+        fragColor = color;
     }
 '''
 )
@@ -63,6 +64,7 @@ line_shader = make_shader('''
 
 '''
     uniform vec4 color;
+    out vec4 fragColor;
 
     vec4 linear_to_srgb(vec4 linear) {
         return mix(
@@ -82,7 +84,7 @@ line_shader = make_shader('''
 
     void main()
     {
-        gl_FragColor = srgb_to_linear(color);
+        fragColor = srgb_to_linear(color);
     }
 '''
 )

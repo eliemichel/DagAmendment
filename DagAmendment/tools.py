@@ -155,7 +155,7 @@ class SmartGrabTool(WorkSpaceTool):
         for offset, color in [ (0, preview_props.brush_color) ]:
             x, y = xy
             if radius > 1:
-                draw_circle_2d((x + offset, y + offset), color, radius, 200)
+                draw_circle_2d((x + offset, y + offset), color, radius, segments=200)
             if radius < 5:
                 draw_lines_2d([
                     (x + 15 + offset, y + offset), (x + radius + offset, y + offset),
@@ -168,7 +168,7 @@ class SmartGrabTool(WorkSpaceTool):
                 and preview_props.show_outer_radius):
                 jfilter_props = diffparam.jfilter_properties(smartgrab_props.jfilter)
                 r = radius + jfilter_props.extra_radius
-                draw_circle_2d((x + offset, y + offset), color, r, 200)
+                draw_circle_2d((x + offset, y + offset), color, r, segments=200)
 
 # -------------------------------------------------------------------
 
