@@ -74,7 +74,7 @@ Building
 Steps 1 and 2 can be performed by simply running:
 
 ```
-# on linux: apt install build-essential cmake python3.9-dev
+# on linux: apt install build-essential cmake python3.10-dev
 python make_releases.py
 ```
 
@@ -84,14 +84,14 @@ python make_releases.py
 cd Accel
 mkdir build
 cd build
-cmake .. -DPYTHON_EXECUTABLE="C:\Python39\python.exe"
+cmake .. -DPYTHON_EXECUTABLE="C:\Python310\python.exe"
 cmake --build . --config Release
 cmake --install .
 ```
 
-The install command simply copies the pyd file that results from building (e.g. `Accel.cp39-win_amd64.pyd`) to `DagAmendment`.
+The install command simply copies the pyd file that results from building (e.g. `Accel.cp310-win_amd64.pyd`) to `DagAmendment`.
 
-**NB:** For Blender <= 2.92, the python version must be 3.7 (the filename must contain `cp37`). From 2.93 on, it must be 3.9 (`cp39`).
+**NB:** For Blender <= 2.92, the python version must be 3.7 (the filename must contain `cp37`). From 2.93 to 3.0 use Python 3.9 (`cp39`) and from 3.1 on, it must be Python 3.10 (`cp310`).
 If it is not the case, you must either set your `PATH` so that `where python` or `which python` points to the relevant version, or use `-DPYTHON_EXECUTABLE` as in the example above. This requires to have the relevant version of Python installed independently of Blender's embedded version (because the latter does not include libraries to link against).
 
 2. Create zip from `DagAmendment/` and copy it to the `releases` directory (gitignore'd). This zip file is an add-on that can be installed in Blender.
@@ -157,7 +157,7 @@ License
 Being a Blender add-on, this code is distributed as a whole under the terms of the GPLv3 license. In details, files that use the `bpy` module (Blender Python) must be GPL, other files use the more permissive MIT license.
 
 ```
-Copyright (c) 2020-2021 - Télécom Paris (Élie Michel)
+Copyright (c) 2020-2022 - Télécom Paris (Élie Michel)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

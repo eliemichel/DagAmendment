@@ -49,10 +49,10 @@ def main():
 		ensure_dir("releases")
 		ensure_dir(accel_build_dir)
 
-		python39_exe = find_python39()
+		python310_exe = find_python310()
 
 		with cd(accel_build_dir):
-			run(["cmake", "..", f"-DPYTHON_EXECUTABLE={python39_exe}", f"-DCMAKE_BUILD_TYPE=Release"])
+			run(["cmake", "..", f"-DPYTHON_EXECUTABLE={python310_exe}", f"-DCMAKE_BUILD_TYPE=Release"])
 			run(["cmake", "--build", ".", "--config", "Release"])
 			run(["cmake", "--install", "."])
 
@@ -98,7 +98,7 @@ def get_addon_version(addon_directory):
 def this_scripts_directory():
 	return os.path.dirname(os.path.realpath(__file__))
 
-def find_python39():
+def find_python310():
 	path_sep = ";" if sys.platform == "win32" else ":"
 	python_exe = "python.exe" if sys.platform == "win32" else "python"
 	python3_exe = "python3.exe" if sys.platform == "win32" else "python3"
@@ -115,9 +115,9 @@ def find_python39():
 			full_python_exe = os.path.join(p, python3_exe)
 		if full_python_exe is not None:
 			ret = run([full_python_exe, "--version"], capture_output=True)
-			if ret.stdout.startswith(b"Python 3.9"):
+			if ret.stdout.startswith(b"Python 3.10"):
 				return full_python_exe
-	print("Could not find Python 3.9 in your PATH!")
+	print("Could not find Python 3.10 in your PATH!")
 	exit(1)
 
 #------------------------------------------------------------

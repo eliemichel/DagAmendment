@@ -22,8 +22,8 @@
 bl_info = {
     "name": "Dag Amendment",
     "author": "Élie Michel <elie.michel@telecom-paris.fr>",
-    "version": (1, 0, 1),
-    "blender": (2, 93, 0),
+    "version": (1, 1, 0),
+    "blender": (3, 1, 0),
     "location": "Properties > Scene",
     "description": "DAG Amendment for Inverse Control of Parametric Shapes",
     "warning": "",
