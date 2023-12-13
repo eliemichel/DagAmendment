@@ -36,7 +36,7 @@
 
 #include "closest_point.h"
 
-constexpr std::tuple<int,int,int> version = {1, 0, 0};
+constexpr std::tuple<int,int,int> version(1, 0, 0);
 
 namespace py = pybind11;
 
@@ -97,7 +97,7 @@ project(py::array_t<Float> vertices, py::array_t<int> triangles, py::array_t<Flo
 	// Copy to output
 	auto projections = py::array_t<Float>({ static_cast<size_t>(samples_buf.shape[0]), static_cast<size_t>(3) });
 	auto bcoords = py::array_t<Float>({ static_cast<size_t>(samples_buf.shape[0]), static_cast<size_t>(3) });
-	auto proj_triangles = py::array_t<int>({ static_cast<pybind11::ssize_t>(samples_buf.shape[0]) });
+	auto proj_triangles = py::array_t<int>( static_cast<pybind11::ssize_t>(samples_buf.shape[0]) );
 	auto projections_data = projections.template mutable_unchecked<2>();
 	auto bcoords_data = bcoords.template mutable_unchecked<2>();
 	auto proj_triangles_data = proj_triangles.template mutable_unchecked<1>();
